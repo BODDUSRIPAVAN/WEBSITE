@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Validations</title>
+    <link rel="icon" type="text/image" href="register.png">
+    <style>
+        body{
+            background-color:rgb(0, 0, 0);
+        }
+        div{
+            background-color: rgb(255, 222, 115);
+            border-radius:15px;
+            margin-top:38px;
+            height:600px;
+            width:600px;
+        }
+        table{
+            width:500px;
+        }
+    </style>
+    <script type="text/javascript">
+        function validate()
+        {
+            var first=document.getElementById("first").value
+            var first_regex=/^[a-z_]{3}[a-z_]*$/i
+            var last=document.getElementById("last").value
+            var middle=document.getElementById("middle").value
+            var middle_regex=/^[a-z_]*$/i
+            var nation=document.getElementById("country").value
+            var pho=document.getElementById("phone").value
+            var nation_india=/^[6789][0-9]{9}$/
+            var nation_usa=/^([0-9]{3}-){2}[0-9]{4}$/
+            var pat=/^[a-z][a-z0-9_?\.?\!\#\$\%\&\`\*\+\-\/\=\?\^\_\'\{\|]*@[a-z]+\.[a-z]+(\.[a-z]+)?$/i
+            var mail=document.getElementById("email").value
+            var c1=(document.getElementById("h1").checked)?1:0
+            var c2=(document.getElementById("h2").checked)?1:0
+            var c3=(document.getElementById("h3").checked)?1:0
+            var c4=(document.getElementById("h4").checked)?1:0
+            var c5=(document.getElementById("h5").checked)?1:0
+            var photo_size=document.getElementById("photo").size
+            var req=document.getElementById("require").checked
+            var addr=document.getElementById("address").value
+            var addr_regex=/[0-9]+/
+            var psswd=document.getElementById("password").value
+            if(!first_regex.test(first) || !first_regex.test(last) || !middle_regex.test(middle) || (nation==="INDIA" && !nation_india.test(pho)) || (nation==="USA" && !nation_usa.test(pho)) || !pat.test(mail) || c1+c2+c3+c4+c5<2 || req==false || addr_regex.test(addr) || psswd.length<6)
+            {
+                if(!first_regex.test(first))
+                {
+                    document.getElementById("first").style.border="10px solid red";
+                    document.getElementById("l1").style.visibility="visible";
+                }
+                else
+                {
+                    document.getElementById("first").style.border="1px solid black";
+                    document.getElementById("l1").style.visibility="hidden";
+                }
+                if(!first_regex.test(last))
+                {
+                    document.getElementById("last").style.border="10px solid red";
+                    document.getElementById("l2").style.visibility="visible";
+                }
+                else
+                {
+                    document.getElementById("last").style.border="1px solid black";
+                    document.getElementById("l2").style.visibility="hidden";
+                }
+                if(!middle_regex.test(middle))
+                {
+                    document.getElementById("middle").style.border="10px solid red";
+                    document.getElementById("l3").style.visibility="visible";
+                }
+                else
+                {
+                    document.getElementById("middle").style.border="1px solid black";
+                    document.getElementById("l3").style.visibility="hidden";
+                }
+                if(nation==="INDIA")
+                {
+                    if(!nation_india.test(pho))
+                    {
+                        document.getElementById("phone").style.border="10px solid red";
+                        document.getElementById("l4").style.visibility="visible";
+                    }
+                    else
+                    {
+                        document.getElementById("phone").style.border="1px solid black";
+                        document.getElementById("l4").style.visibility="hidden";
+                    }
+                }
+                if(nation==="USA")
+                {
+                    if(!nation_usa.test(pho))
+                    {
+                        document.getElementById("phone").style.style.border="10px solid red";
+                        document.getElementById("l4").style.visibility="visible";
+                    }
+                    else
+                    {
+                        document.getElementById("phone").style.border="1px solid black";
+                        document.getElementById("l4").style.visibility="hidden";
+                    }
+                }
+                if(!pat.test(mail))
+                {
+                    document.getElementById("email").style.border="10px solid red";
+                    document.getElementById("l7").style.visibility="visible";
+                }
+                else
+                {
+                    document.getElementById("email").style.border="1px solid black";
+                    document.getElementById("l7").style.visibility="hidden";
+                }
+                if(psswd.length<6)
+                {
+                    document.getElementById("password").style.border="10px solid red";
+                    document.getElementById("lp").style.visibility="visible";
+                }
+                else
+                {
+                    document.getElementById("password").style.border="1px solid black";
+                    document.getElementById("lp").style.visibility="hidden";
+                }
+                if(c1+c2+c3+c4+c5<2)
+                {
+                    document.getElementById("h1").style.backgroundColor="red";
+                    document.getElementById("l5").style.visibility="visible";
+                }
+                else
+                {
+                    document.getElementById("h1").style.border="1px solid #000000";
+                    document.getElementById("l5").style.visibility="hidden";
+                }
+                if(req==false)
+                {
+                    document.getElementById("l10").style.visibility="visible";
+                }
+                else
+                {
+                    document.getElementById("l10").style.visibility="hidden";
+                }
+                if(addr_regex.test(addr))
+                {
+                    var s=""
+                    for(k of addr)
+                    {
+                        if(!addr_regex.test(k))
+                        {
+                            s=s+k
+                        }
+                    }
+                    document.getElementById("address").value=s
+                    return true;
+                }
+                return false;
+                setTimeout(validate,3000)
+            }
+            else if(first_regex.test(first) && first_regex.test(last) )
+            {
+                return true;
+            }
+        }
+        var i=0
+        function reveal()
+        {
+            if(i==0)
+            {
+                document.getElementById("password").type="text"
+                i=1
+            }
+            else
+            {
+                document.getElementById("password").type="password"
+                i=0
+            }
+            return false
+        }
+        function confirmation()
+        {
+            var choice=confirm("Enter 'Ok' to confirm 'Cancel' to deny !")
+            if(choice)
+                document.getElementById("reset_confirm").type="reset"
+        }
+        function submitting()
+        {
+            var a=confirm("Press Ok to submit Cancel to deny !")
+            if(a)
+                document.getElementById("submit_confirm").type="submit"
+        }
+    </script>
+    </head>
+    <body><center>
+    <div>
+    <h1>Registration Form</h1>
+    <form action="welcome.html" method="post" onsubmit="return validate();" >
+    <table >
+        <tr><td>First Name</td><td>: <input type="text" id="first" required></td><td><label id="l1" style="color:red;visibility:hidden">Invalid first name!</label></td></tr>
+        <tr><td>Last Name</td><td>: <input type="text" id="last" required></td><td><label id="l2" style="color:red;visibility:hidden">Invalid last name!</label></td></tr>
+        <tr><td>Middle Name</td><td>: <input type="text" id="middle"></td><td><label id="l3" style="color:red;visibility:hidden">Invalid middle name!</label></td></tr>
+        <tr><td>Full Name</td><td>: <input type="text" id="full" readonly></td></tr>
+        <tr><td>Country</td><td>: <select id="country"><option>INDIA</option><option>USA</option></select></td></tr>
+        <tr><td>Phone No</td><td>: <input type="text" id="phone"></td><td><label id="l4" style="color:red;visibility:hidden">Invalid pho.no!</label></td></tr>
+        <tr><td>Password</td><td>: <input type="password" id="password"><button onclick="return reveal()"><img src="eye.png" height="12" width="15"></button><label id="lp" style="color:red;visibility:hidden">Psswd!</label></td></tr>
+        <tr><td>Hobbies</td><td>: <input type="checkbox" id="h1"><label for="h1">Kites</label></td><td><label id="l5" style="color:red;visibility:hidden">Invalid hobbies!</label></td></tr>
+        <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h2"><label for="h2">Cricket</label></td></tr>
+        <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h3"><label for="h3">Swimming</label></td></tr>
+        <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h4"><label for="h4">Singing</label></td></tr>
+        <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h5"><label for="h5">Drawing</label></td></tr>
+        <tr><td>Photo</td><td>: <input type="file" id="photo" accept="image/png"></td><td><label id="l6" style="color:red;visibility:hidden">Invalid photo!</label></td></tr>
+        <tr><td>Email Address</td><td>: <input type="email" id="email" required></td><td><label id="l7" style="color:red;visibility:hidden">Invalid email!</label></td></tr>
+        <tr><td>Date of birth</td><td>: <input type="date" id="dob" oninput="age()"></td><td><label id="l8" style="color:red;visibility:hidden">Invalid DOB!</label></td></tr>
+        <tr><td>Age</td><td>: <input type="text" readonly id="agee"></td></tr>
+        <script>
+            function age()
+            {
+                var abc=document.getElementById("dob").value;
+                var dob=new Date(abc);
+                var today = new Date();
+                var a=new Date(today-dob);
+                document.getElementById("agee").value=(a.getFullYear()-1970+"-years,"+a.getMonth()+"-months,"+a.getDay()+"-days")
+            }
+        </script>
+        <tr><td>Address</td><td>: <input type="text" id="address"></td><td><label id="l9" style="color:red;visibility:hidden">Invalid address!</label></td></tr>
+        <tr><td><input type="checkbox" id="require"></td><td>I agree to the terms of the company.</td><td><label id="l10" style="color:red;visibility:hidden">Accept to proceed!</label></td></tr>
+    </table>
+    <input type="button" value="Reset" onclick="return confirmation()" id="reset_confirm">
+    <input type="button" value="Submit" onclick="return submitting()" id="submit_confirm">
+    </form>
+    </div>
+    </center></body>
+</html>

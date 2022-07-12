@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        h1{
+            color:white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        table{
+            color:white;
+            height:500px;
+            border-radius:20px;
+            font-size: larger;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left:40px;
+            margin-top:30px;
+        }
+        table input[type=text]{
+            width:450px;
+        }
+        form{
+            border:2px solid white;
+            margin:50px 250px;
+            border-radius: 20px;
+            background-image: linear-gradient(to bottom,rgb(140, 0, 255),rgb(255, 0, 200));
+        }
+    </style>
+</head>
+<body bgcolor="black">
+    <center>
+        <h1>Registration Form</h1>
+        <form  action="website.html" method="post" onsubmit="return validate();" >
+        <table id="tablee" cellspacing="9" cellpadding="9" onmouseover="return full_name()">
+            <tr><td>First Name</td><td>: <input type="text" id="first" required oninput="return first_fun()"></td><td id="l1" style="visibility:hidden">Invalid!</td></tr>
+            <tr><td>Last Name</td><td>: <input type="text" id="last" required oninput="return last_fun()"></td><td id="l2" style="visibility:hidden">Invalid!</td></tr>
+            <tr><td>Middle Name</td><td>: <input type="text" id="middle" oninput="return middle_name()" placeholder="Optional"></td><td id="l3" style="visibility:hidden">Invalid!</td></tr>
+            <tr><td>Full Name</td><td>: <input type="text" id="full" readonly></td></tr>
+            <tr><td>Country</td><td>: <select id="country"><option>INDIA</option><option>USA</option></select></td></tr>
+            <tr><td>Phone No</td><td>: <input type="text" id="phone" oninput="return phone_num()"></td><td id="l4" style="visibility:hidden">Invalid!</td></tr>
+            <tr><td>Password</td><td>: <input type="password" id="password" oninput="return pswd_len()"><button onclick="return reveal()" style="background:red"><img src="eye.png" height="20" width="20"></button><td id="lp" style="visibility:hidden">Invalid!</td></tr>
+            <tr><td onmouseover="return hobbies()">Hobbies</td><td>: <input type="checkbox" id="h1"><label for="h1">Kites</label></td><td id="l5" style="visibility:hidden">Invalid!</td></tr>
+            <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h2"><label for="h2">Cricket</label></td></tr>
+            <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h3"><label for="h3">Swimming</label></td></tr>
+            <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h4"><label for="h4">Singing</label></td></tr>
+            <tr><td></td><td>&nbsp;&nbsp;<input type="checkbox" id="h5"><label for="h5">Drawing</label></td></tr>
+            <tr><td>Photo</td><td>: <input type="file" id="photo" accept="image/png" onchange="photo_size(this)"></td><td>*</td></tr>
+            <tr><td>Email Address</td><td>: <input type="email" id="email" required oninput="return emaill()"></td><td style="visibility:hidden">Invalid!</td></tr>
+            <tr><td>Date of birth</td><td>: <input type="date" id="dob" oninput="return age()"></td></tr>
+            <tr><td>Age</td><td>: <input type="text" readonly id="agee"></td></tr>
+            <tr><td>Address</td><td>: <input type="text" id="address" oninput="return address_fun()"></td><td style="visibility:hidden">Invalid!</td></tr>
+            <tr><td><input type="checkbox" id="require"></td><td>I agree to the terms of the company.</td><td id="l10" style="visibility:hidden">Required!</td></tr>
+    </table>
+    <input type="button" value="Reset" onclick="return confirmation()" id="reset_confirm">
+    <input type="button" value="Submit" onclick="return submitting()" id="submit_confirm">
+    </form>
+    </center>
+    <script type="text/javascript" src="registration.js"></script>
+</body>
+</html>
